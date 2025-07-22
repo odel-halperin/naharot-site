@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>נהרות בעולם - Odel Halperin</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      direction: rtl;
+      text-align: right;
+      font-family: 'Varela Round', sans-serif;
+      background: linear-gradient(to bottom, #e0f7fa, #ffffff);
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    header {
+      background-color: #00796b;
+      color: white;
+      padding: 30px;
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    section {
+      padding: 30px 20px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h2, h3 {
+      color: #004d40;
+    }
+
+    ol {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    li {
+      margin-bottom: 20px;
+    }
+
+    img {
+      display: block;
+      margin: 15px auto;
+      width: 280px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .link-button {
+      display: block;
+      text-align: center;
+      background-color: #004d40;
+      color: white;
+      padding: 12px;
+      margin: 20px auto;
+      border-radius: 25px;
+      width: 250px;
+      text-decoration: none;
+      font-size: 18px;
+      transition: background-color 0.3s;
+    }
+
+    .link-button:hover {
+      background-color: #00695c;
+    }
+
+    #backToTop {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      background-color: #00796b;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 50%;
+      font-size: 22px;
+      cursor: pointer;
+      display: none;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #e0f2f1;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    Odel Halperin - נהרות בעולם
+  </header>
+
+  <section class="fade">
+    <p>
+      בעלת ניסיון רב-שנים בהוראה, עם רקע מדעי וידיעת הארץ. חובבת נופים וטבע, בפרט נהרות זורמים בעונות החורף.
+      במאית עם ניסיון רב בהפקות גדולות. כיום לומדת ומתמקצעת בעולם המחשבים – עוסקת ב־QA, SQL, HTML ועוד.
+    </p>
+  </section>
+
+  <section class="fade">
+    <h3>נהרות מרהיבים ברחבי העולם</h3>
+    <ol>
+      <li>
+        <b>נהר הדנובה (Danube)</b>
+        <p>הדנובה זורם מגרמניה לים השחור ועובר דרך עשר מדינות באירופה, כולל בודפשט והונגריה.</p>
+        <img src="images/danube.jpg" alt="נהר הדנובה">
+      </li>
+      <li>
+        <b>נהר דואורו (Douro) - ספרד ופורטוגל</b>
+        <p>זורם מהרי ספרד עד האוקיינוס האטלנטי בפורטוגל. ידוע בנופי הכרמים ובאזורי היין סביבו.</p>
+        <img src="images/douro.jpg" alt="נהר דואורו">
+      </li>
+      <li>
+        <b>נהר יאנגטצה (Yangtze), סין</b>
+        <p>הנהר הארוך ביותר באסיה והשלישי בעולם. עובר דרך ערים מודרניות ואתרים היסטוריים.</p>
+        <img src="images/yangtze.jpg" alt="נהר יאנגטצה">
+      </li>
+    </ol>
+  </section>
+
+  <a class="link-button" href="https://www.ynet.co.il/articles/0,7340,L-3787726,00.html" target="_blank">
+    קראי עוד על נהרות מהממים בעולם
+  </a>
+
+  <div id="backToTop" onclick="scrollToTop()">↑</div>
+
+  <footer>
+    © 2025 כל הזכויות שמורות ל־Odel Halperin
+  </footer>
+
+  <script>
+    // גלילה חלקה + אנימציות
+    const fadeSections = document.querySelectorAll('.fade');
+    const backToTopBtn = document.getElementById('backToTop');
+
+    function onScroll() {
+      fadeSections.forEach(sec => {
+        const top = sec.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        if (top < windowHeight - 100) {
+          sec.classList.add('visible');
+        }
+      });
+
+      // כפתור "חזור למעלה"
+      if (window.scrollY > 300) {
+        backToTopBtn.style.display = 'block';
+      } else {
+        backToTopBtn.style.display = 'none';
+      }
+    }
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    window.addEventListener('scroll', onScroll);
+    window.addEventListener('load', onScroll);
+  </script>
+
+</body>
+</html>
